@@ -5,9 +5,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Job } from './entities/job.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Job])], // Import TypeOrmModule and provide the Job entity
+  imports: [TypeOrmModule.forFeature([Job])],
   controllers: [JobsController],
   providers: [JobsService],
-  exports: [JobsService], // Export JobsService if needed in other modules
+  exports: [JobsService],
 })
 export class JobsModule {}

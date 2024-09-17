@@ -35,19 +35,16 @@ export class ApplicationsService {
   }
 
   async create(createApplicationDto: CreateApplicationDto): Promise<Application> {
-    // Validate User
     const user = await this.userRepository.findOneBy({ id: createApplicationDto.userId });
     if (!user) {
       throw new NotFoundException(`User with ID ${createApplicationDto.userId} not found`);
     }
 
-    // Validate Job
     const job = await this.jobRepository.findOneBy({ id: createApplicationDto.jobId });
     if (!job) {
       throw new NotFoundException(`Job with ID ${createApplicationDto.jobId} not found`);
     }
 
-    // Create and save application
     const application = this.applicationRepository.create({
       ...createApplicationDto,
       status: createApplicationDto.status || ApplicationStatus.SUBMITTED,

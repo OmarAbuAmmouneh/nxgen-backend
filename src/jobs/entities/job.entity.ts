@@ -15,5 +15,5 @@ export class Job {
   location: string;
 
   @Column({ default: true })
-  isActive: boolean;  // To deactivate or hide jobs
+  isActive: boolean;
 }

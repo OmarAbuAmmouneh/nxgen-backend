@@ -8,7 +8,6 @@ import { CreateApplicationDto } from './dto/create-application.dto';
 export class ApplicationsController {
   constructor(private readonly applicationsService: ApplicationsService) {}
 
-  // Get all applications
   @Get()
   findAll() {
     return this.applicationsService.findAll();
