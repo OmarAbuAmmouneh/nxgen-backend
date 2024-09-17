@@ -18,6 +18,7 @@ export class JobsController {
   }
 
   @Get()
+  @UseGuards(JwtAuthGuard)
   findAll() {
     return this.jobsService.findAll();
   }
@@ -28,11 +29,15 @@ export class JobsController {
   // }
 
   @Patch(':id')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('admin')
   update(@Param('id') id: string, @Body() updateJobDto: UpdateJobDto) {
     return this.jobsService.update(+id, updateJobDto);
   }
 
   @Delete(':id')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('admin')
   remove(@Param('id') id: string) {
     return this.jobsService.remove(+id);
   }
