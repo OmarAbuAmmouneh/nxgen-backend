@@ -7,6 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { JobsModule } from './jobs/jobs.module';
 import { ApplicationsModule } from './applications/applications.module';
 import { AuthModule } from './auth/auth.module';
+import { MetricsModule } from './metrics/metrics.module';
 import typeorm from './config/typeorm';
 
 @Module({
@@ -22,7 +23,9 @@ import typeorm from './config/typeorm';
     UsersModule,
     JobsModule,
     ApplicationsModule,
-    AuthModule
+    AuthModule,
+    MetricsModule,
+    MetricsModule
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -15,10 +15,14 @@ import { CreateApplicationDto } from './dto/create-application.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { RolesGuard } from 'src/auth/roles.guard';
 import { Roles } from 'src/auth/roles.decorator';
+import { MetricsService } from 'src/metrics/metrics.service';
 
 @Controller('applications')
 export class ApplicationsController {
-  constructor(private readonly applicationsService: ApplicationsService) {}
+  constructor(
+    private readonly applicationsService: ApplicationsService,
+    private readonly metricsService: MetricsService
+  ) {}
 
   @Get()
   @UseGuards(JwtAuthGuard)
@@ -47,6 +51,7 @@ export class ApplicationsController {
   async create(
     @Body() createApplicationDto: CreateApplicationDto,
   ): Promise<Application> {
+    this.metricsService.incrementApplicationCounter(createApplicationDto.jobId.toString());
     return this.applicationsService.create(createApplicationDto);
   }
 }
