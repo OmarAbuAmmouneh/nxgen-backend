@@ -26,11 +26,34 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-## Project setup
+## Backend Setup
+
+### 1. Install PostgreSQL and pgAdmin
+
+- **PostgreSQL Installation on Windows**: [Watch video tutorial](https://www.youtube.com/watch?v=HmziePvMwkE)
+- **pgAdmin Installation on Windows**: [Watch video tutorial](https://www.youtube.com/watch?v=0n41UTkOBb0)
+- **PostgreSQL Installation on macOS**: [Watch video tutorial](https://www.youtube.com/watch?v=PShGF_udSpk)
+- **pgAdmin Installation on macOS**: [Watch video tutorial](https://www.youtube.com/watch?v=PShGF_udSpk)
+
+### 2. Create a Database
+
+After installing pgAdmin, follow these steps to create your PostgreSQL database:
+
+1. Open **pgAdmin**.
+2. Connect to your PostgreSQL server.
+3. Right-click on **Databases** > **Create** > **Database**.
+4. Name the database `nxgen` and configure it to use the default `postgres` user.
+
+### 3. Configure the Environment Variables
+
+Create a `.env` file in the root of your project with the following content:
 
 ```bash
-$ yarn install
-```
+DATABASE_HOST=localhost
+DATABASE_PORT=5432
+DATABASE_USERNAME=postgres
+DATABASE_PASSWORD=1234
+DATABASE_NAME=nxgen
 
 ## Compile and run the project
 
