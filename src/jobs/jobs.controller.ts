@@ -1,10 +1,11 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Query } from '@nestjs/common';
 import { JobsService } from './jobs.service';
 import { CreateJobDto } from './dto/create-job.dto';
 import { UpdateJobDto } from './dto/update-job.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { RolesGuard } from 'src/auth/roles.guard';
 import { Roles } from 'src/auth/roles.decorator';
+import { Job } from './entities/job.entity';
 
 @Controller('jobs')
 export class JobsController {
@@ -19,8 +20,8 @@ export class JobsController {
 
   @Get()
   @UseGuards(JwtAuthGuard)
-  findAll() {
-    return this.jobsService.findAll();
+  findAll(@Query('userId') userId: string): Promise<Job[]> {
+    return this.jobsService.findAll(userId ? Number(userId) : undefined);
   }
 
   // @Get(':id')
